@@ -1,0 +1,40 @@
+<html>
+<head>
+<h1>New book</h1>
+</head>
+<body>
+  <%= form_with scope: :books, url: books_path, local: true do |form| %>
+  
+     <%#= image_tag "book.jpg" %>
+
+
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :price %><br>
+    <%= form.text_area :price %>
+  </p>
+
+   <p>
+    <%= form.label :author %><br>
+    <%= form.text_area :author %>
+  </p>
+ 
+  <p>
+    <%= form.label :book_no %><br>
+    <%= form.text_area :book_no %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+
+</body>
+<% end %>
+
+</html>

@@ -1,5 +1,6 @@
 
 <h1>All Books</h1>
+<td><%= link_to 'New Book', new_book_path, class: "btn btn-outline-primary" %></td>
  
 <table>
   <tr>
@@ -16,7 +17,13 @@
       <td><%= book.price %></td>
       <td><%= book.author %></td>
       <td><%= book.book_no %></td>
-      <td><%#= link_to 'Show', book_path(book) %></td>
+
+       <td><%= link_to 'Destroy', book_path(book),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+       <td><%= link_to 'Edit', edit_book_path(book) %></td>
+       <td><%= link_to 'Show', book_path(book) %></td>
     </tr>
   <% end %>
 </table>
