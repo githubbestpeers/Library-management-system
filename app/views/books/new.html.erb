@@ -3,6 +3,37 @@
 <h1>New book</h1>
 </head>
 <body>
+
+
+
+    <div class="card-group">
+  <div class="card">
+<%= image_tag "ROR.jpeg" %>
+   
+    <div class="card-body">
+      <h5 class="card-title">Card ROR</h5>
+      <p class="card-text">Book Information</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <%= image_tag "TOC.jpg" %>
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+        <%= image_tag "M.jpg" %>
+    <#img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>
   <%= form_with scope: :books, url: books_path, local: true do |form| %>
   
      <%#= image_tag "book.jpg" %>
@@ -35,6 +66,7 @@
 
 
 </body>
+
 <% end %>
 
 </html>
