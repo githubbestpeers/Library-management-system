@@ -22,7 +22,7 @@ class BooksController < ApplicationController
 
   def create
     
-    @book = Book.new(book_params)
+    @book = Book.new(books_params)
     @book.image.attach(params[:books][:image])
     if @book.save
       redirect_to @book
@@ -37,7 +37,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(book_params)
+    if @book.update(books_params)
       redirect_to @book
     else
       render 'edit'
@@ -54,7 +54,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  def book_params
+  def books_params
     params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :user_id)
   end
 end
