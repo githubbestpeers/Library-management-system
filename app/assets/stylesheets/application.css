@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+.margin-right {
+    margin-right: 200px !important
+}
+
+=require rails_bootstrap_forms
