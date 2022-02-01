@@ -3,11 +3,23 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.paginate(:page => params[:page], :per_page => 4)
+  
   end
+
   def search
-    @book = Book.where(["name LIKE ?","%#{params[:id]}%"]) 
-    redirect_to book_path
-  end  
+    if params[:search].blank?
+      redirect_to(books_path, alert: "Empty field!") and return
+    else
+       keyword = params[:search]
+       @books = Book.where("lower(name) LIKE ?", "%#{keyword}%")
+    end
+  end
+  # def search
+  #   @books = Book.search([:id])
+  #   @books = Book.find([:id]) 
+  #   # @book = Book.where(["name LIKE ?","%#{params[:id]}%"]) 
+  #   # redirect_to book_path
+  # end  
   
   def show
 
@@ -21,13 +33,14 @@ class BooksController < ApplicationController
   end
 
   def create
-    
-    @book = Book.new(books_params)
-    @book.image.attach(params[:books][:image])
-    if @book.save
-      redirect_to @book
-    else
-      render 'new'
+    5.times do
+      @book = Book.new(book_params)
+      @book.image.attach(params[:books][:image])
+      if @book.save
+        redirect_to @book 
+      else
+        render 'new'
+      end
     end
   end
 
@@ -37,7 +50,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(books_params)
+    if @book.update(book_params)
       redirect_to @book
     else
       render 'edit'
@@ -54,7 +67,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  def books_params
-    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :user_id)
+  def book_params
+    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :user_id, :role, :search)
   end
 end

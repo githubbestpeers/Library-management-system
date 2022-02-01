@@ -29,13 +29,24 @@
           <a class="nav-link active" aria-current="page" href="/books">Home</a>
         </li>
       </ul>
+      <%= form_tag(search_page_path, :method => "get",   
+    class: 'navbar-form navbar-left') do %>  
+  <div class="input-group">  
+    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+    <div class="input-group-btn">  
+      <%= button_tag "Search", :class => 'btn btn-primary glyphicon glyphicon-search',:name => nil%>  
+    </div> 
+  </div>  
+<% end %>
+<!-- 
       <form class="d-flex" action="/search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-    </div>
+    </div> -->
     <p class="navbar-text float-right">
       <% if user_signed_in? %>
+      <p>you are a[<%= current_user.role %>]</p>
         <strong><%= current_user.email %></strong>
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
         <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
@@ -45,7 +56,7 @@
       <% end %>
     </p>
   </div>
-
+ 
 
 </nav>
     <% if notice %>

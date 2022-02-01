@@ -1,9 +1,11 @@
 <div class="container">
   <h1>All Books</h1>
-  <%= link_to 'New Book', new_book_path, class: "btn btn-outline-primary my-3" %>
-  <%= link_to 'All Issued Books ', book_issues_path, class: 'btn btn-outline-primary'  %>
-  <% @books.each do |book| %>
-  <div class="row">
+  <% if current_user.role == 'admin' %>
+    <%= link_to 'New Book', new_book_path, class: "btn btn-outline-primary my-3" %>
+  <% end %>
+  <%= link_to 'Issued Books ', book_issues_path, class: 'btn btn-outline-primary'  %>
+  <% @books.last(6).each do |book| %>
+  <div class="row my-3">
     <div class="col-sm-6">
     
       <div class="card" style="width: 18rem;">
@@ -14,13 +16,15 @@
           <h5 class="card-title"><%= book.name %></h5>
           <p class="card-text"><p><%= book.description %></p>
           <p><b><%= book.price %>$</b></p>
-          <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id), class: "btn btn-outline-primary my-3" %></p>
+          <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
           <span><%= link_to 'Show', book_path(book), class: 'btn btn-outline-primary'  %></span>
-          <span><%= link_to 'Destroy', book_path(book),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></span>
-          <span><%= link_to 'Edit', edit_book_path(book, current_user), class: 'btn btn-outline-warning'  %></span></p>
-          
+          <% if current_user.role == 'admin' %>
+            <span><%= link_to 'Destroy', book_path(book),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></span>
+            <span><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-outline-warning'  %></span>
+            <span><%#= link_to 'Issue', book_path(book) %></span>
+            <% end %>
         </div>
       </div>
       <br>
