@@ -1,8 +1,11 @@
 class BookIssuesController < ApplicationController
   
-  def index 
-     
-    @book_issue = BookIssue.all
+  def index
+    if current_user.role == "admin"
+      @book_issues = BookIssue.all
+    else
+      @book_issues = BookIssue.all.where(user_id:current_user.id)
+    end
   end
 
   def show
@@ -10,6 +13,7 @@ class BookIssuesController < ApplicationController
   end  
   
   def new
+    @book = Book.new
     @book = Book.find(params[:book_id])
     @book_issue = BookIssue.new
   end
@@ -25,6 +29,10 @@ class BookIssuesController < ApplicationController
     else
       render 'new'
     end
+
+      #  flash[:success] = t('flash.book.success')
+      # flash.now[:error] = t('flash.book.error_html')
+
   end
 
   private

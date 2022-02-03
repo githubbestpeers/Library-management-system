@@ -33,15 +33,16 @@ class BooksController < ApplicationController
   end
 
   def create
-    5.times do
+    
       @book = Book.new(book_params)
       @book.image.attach(params[:books][:image])
       if @book.save
+        # UserMailer.with(user: current_user, user: @user ) .user_create.deliver_later
         redirect_to @book 
       else
         render 'new'
       end
-    end
+    
   end
 
   def destroy

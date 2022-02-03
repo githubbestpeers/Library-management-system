@@ -4,21 +4,25 @@
   <tr>
       <div class="container">
   <h1>All Issued books</h1>
-  
-  <% @book_issue.includes(:user).each do |book_issue| %>
+  <% @book_issues.includes(:user).each do |book_issue| %>
   <div class="row">
   <div class="col-sm-6">
-  
     <div class="card" style="width: 18rem;">
      
       
       <div class="card-body">
-
+        
         <p>
           <% if book_issue.book.image.attached? %>
             <%= image_tag book_issue.book.image.attachment, height: 50, weight: 50 %>
           <% end %>
         </p>
+        
+        <p>
+          <strong>User Id :</strong>
+          <%= book_issue.user_id %>
+        </p>  
+
         <p>
           <strong>Name:</strong>
           <%= book_issue.book.name %>

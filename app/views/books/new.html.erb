@@ -3,13 +3,22 @@
 <h1>New book</h1>
 </head>
 <body>
-
+<div class="container">
 
   <%= bootstrap_form_with scope: :books, url: books_path, local: true do |form| %>
   
      <%#= image_tag "book.jpg" %>
 
-
+     <% if @book.errors.any? %>
+      <!-- <h2>Error: Invalid field</h2> -->
+      <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
 
   <p>
     <%#= form.label :name %><br>
@@ -56,7 +65,7 @@
   <p>
     <%= form.submit %>
   </p>
-
+</div>
 
 </body>
 
