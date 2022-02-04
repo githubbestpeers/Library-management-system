@@ -25,13 +25,14 @@ class BookIssuesController < ApplicationController
   def create
     @book_issue = BookIssue.new(book_issue_params)
     if @book_issue.save
+    UserMailer.user_create(@book_issue).deliver_later
+     flash[:success] = "thanks for issued book"
        redirect_to books_path
     else
+      flash.now[:error] = "You got an issue"
       render 'new'
     end
 
-      #  flash[:success] = t('flash.book.success')
-      # flash.now[:error] = t('flash.book.error_html')
 
   end
 

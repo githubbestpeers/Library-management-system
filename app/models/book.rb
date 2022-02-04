@@ -1,22 +1,14 @@
 class Book < ApplicationRecord
   has_one_attached :image
-  belongs_to :user
-  # validates :name, presence: {:message => 'field empty'}
-  # validates :price, presence: {:message => 'field empty'}
-  # validates :author, presence: {:message => 'field empty'}
-  # validates :book_no, presence: {:message => 'field empty'}
-  # validates :image, presence: {:message => 'field empty'}
+  #belongs_to :user 
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :author, presence: true
+  validates :book_no, presence: true
+  validates :image, presence: true     
 
-  # def self.search(search)
-  #   if search
-  #     book = Book.find_by(name: search)
-  #     if book
-  #       self.where(book_id: book_id)
-  #     else 
-  #       Book.all
-  #     end 
-  #   else 
-  #     Book.all
-  #   end  
-  # end      
+
+  # def total_book
+  #   line_book.to_a.sum(|book| book.total_book)
+  # end  
 end

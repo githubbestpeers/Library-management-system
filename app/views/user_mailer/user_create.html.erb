@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
 <html>
-<head>
-  <meta content="text/html"; charset=utf-8" http-equiv="Content-Type">
-</head>
-<body>
-
-<p>
-  you have just been added book:<br>
-  
-  <br>
-</p>  
-</body>
-</html>>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>You got a new order from <%= @user.email %>!</p>
+    <p>
+     Issue Book details<br>
+    --------------------------
+  </p>
+  <p><%= @book.name %></p>
+  <p><%= @book.book_no %></p>
+  <p><%= @book.price %></p>
+  </body>
+</html>

@@ -26,23 +26,32 @@ class BooksController < ApplicationController
   end
 
   def new
+    #@book = Book.find(params[:id])
     @book = Book.new
   end
 
   def edit
   end
 
+  def total_no
+    
+      book=10,
+      book_issue = 1
+        b = book-book_issue
+        @book.show
+  end
+
   def create
     
       @book = Book.new(book_params)
-      @book.image.attach(params[:books][:image])
+     # @book.image.attach(params[:books][:image])
+
       if @book.save
-        # UserMailer.with(user: current_user, user: @user ) .user_create.deliver_later
+       # UserMailer.with(user: current_user, user: @user ) .user_create.deliver_later
         redirect_to @book 
       else
-        render 'new'
+        render :new
       end
-    
   end
 
   def destroy
@@ -69,6 +78,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :user_id, :role, :search)
+     #params.require(:book).permit(:name, :price, :author, :book_no, :description, :image, :user_id, :role, :search)
+    params.permit(:name, :price, :author, :book_no, :description, :image, :user_id, :role, :search)
   end
 end
