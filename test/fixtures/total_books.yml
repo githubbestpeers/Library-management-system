@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book_issue: one
+  book: one
+
+two:
+  book_issue: two
+  book: two

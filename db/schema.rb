@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_085138) do
+ActiveRecord::Schema.define(version: 2022_02_07_145252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 2022_02_02_085138) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "add_total_book_to_books", force: :cascade do |t|
+    t.integer "Total_book"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "book_issues", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "book_id"
@@ -62,6 +68,16 @@ ActiveRecord::Schema.define(version: 2022_02_02_085138) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.text "image"
+    t.integer "Total"
+  end
+
+  create_table "total_books", force: :cascade do |t|
+    t.bigint "book_issue_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_total_books_on_book_id"
+    t.index ["book_issue_id"], name: "index_total_books_on_book_issue_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +107,6 @@ ActiveRecord::Schema.define(version: 2022_02_02_085138) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "book_issues", "books"
   add_foreign_key "book_issues", "users"
+  add_foreign_key "total_books", "book_issues"
+  add_foreign_key "total_books", "books"
 end

@@ -4,6 +4,7 @@
     <%= link_to 'New Book', new_book_path, class: "btn btn-outline-primary my-3" %>
   <% end %>
   <%= link_to 'Issued Books ', book_issues_path, class: 'btn btn-outline-primary'  %>
+  <%#= link_to 'Book Available', book_issues_path, class: 'btn btn-outline-primary'  %>
   <% @books.last(6).each do |book| %>
   <div class="row my-3">
     <div class="col-sm-6">
@@ -17,6 +18,10 @@
           <p class="card-text"><p><%= book.description %></p>
           <p><b><%= book.price %>$</b></p>
           <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
+
+          
+        
+          <p class="card-text">Total book is: <%= book.Total %></p>
           <span><%= link_to 'Show', book_path(book), class: 'btn btn-outline-primary'  %></span>
           <% if current_user.role == 'admin' %>
             <span><%= link_to 'Destroy', book_path(book),

@@ -26,6 +26,10 @@
   <%= @book.description %>
 </p>
 
+<p>
+  <strong>Total:</strong>
+  <%= @book.Total %>
+</p>
 
 <p>
   <strong>Image:</strong>
@@ -36,5 +40,5 @@
 
 
  
-<%= link_to 'Back', book_path %>
+<%= button_to 'Back', books_path, class: "btn btn-primary" %>
 

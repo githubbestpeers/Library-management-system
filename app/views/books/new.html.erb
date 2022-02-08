@@ -22,6 +22,10 @@
 
   <p>
     <%#= form.label :name %><br>
+    <%= form.number_field :Total %>
+  </p>
+  <p>
+    <%#= form.label :name %><br>
     <%= form.text_field :name %>
   </p>
  
@@ -34,7 +38,7 @@
     <%#= form.label :author %><br>
     <%= form.text_area :author %>
   </p>
- 
+
   <p>
     <%#= form.label :book_no %><br>
     <%= form.text_area :book_no %>
@@ -53,15 +57,6 @@
   </p>
   </div>
    
-  <!-- <div>
-  <p>
-    <#%= form.label :role %>
-    <#%= form.select :role, User.roles.keys %>
-  </p>
-</div>
-
- -->
-
   <p>
     <%= form.submit %>
   </p>

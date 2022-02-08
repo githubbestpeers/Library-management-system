@@ -1,6 +1,7 @@
+
 <div class="container">
 <%= bootstrap_form_with model: @book, local: true do |form| %>
-  
+ 
   <% if @book.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -14,36 +15,34 @@
       </ul>
     </div>
   <% end %>
- 
+
   <p>
-    <%#= form.label :name %><br>
+   <%= form.number_field :Total %>
+  </p>
+
+  <p>
     <%= form.text_field :name %>
   </p>
  
   <p>
-    <%#= form.label :price %><br>
     <%= form.text_area :price %>
   </p>
 
    <p>
-    <%#= form.label :author %><br>
     <%= form.text_area :author %>
   </p>
  
   <p>
-    <%#= form.label :book_no %><br>
     <%= form.text_area :book_no %>
 
   </p>
 
   <p>
-    <%#= form.label :description %>
     <%= form.text_area :description %>
   </p>
 
 <div>
   <p>
-    <%#= form.label :image %>
     <%= form.file_field :image %>
   </p>
 </div>

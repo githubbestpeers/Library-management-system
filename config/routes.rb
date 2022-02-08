@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'b_issued/index'
   root 'books#index'
-
+  root 'books#edit'
   get '/search' => 'books#search', :as => 'search_page'
   devise_for :users
   resources :books
