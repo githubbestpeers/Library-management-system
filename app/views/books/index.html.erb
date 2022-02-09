@@ -5,13 +5,21 @@
   <% end %>
   <%= link_to 'Issued Books ', book_issues_path, class: 'btn btn-outline-primary'  %>
   <%#= link_to 'Book Available', book_issues_path, class: 'btn btn-outline-primary'  %>
-  <% @books.last(6).each do |book| %>
-  <div class="row my-3">
-    <div class="col-sm-6">
+  <% @books.each do |book| %>
+  <div class="card-group">
+  <div class="row row-cols-2">
+  
+   
+    	<!-- <div class="row"
+    		
+    		<div class="col"> -->
     
-      <div class="card" style="width: 18rem;">
+    	  <div class="card" style="width: 18rem;">
         <%= image_tag book.image, height: 300, width: 285 if book.image.attached? %>
-        
+      <!--  <div class="row row-cols-1 row-cols-md-3 g-4">
+		     <div class="col">
+		     
+     -->
         <div class="card-body">
 
           <h5 class="card-title"><%= book.name %></h5>
@@ -19,7 +27,7 @@
           <p><b><%= book.price %>$</b></p>
           <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
 
-          
+           
         
           <p class="card-text">Total book is: <%= book.Total %></p>
           <span><%= link_to 'Show', book_path(book), class: 'btn btn-outline-primary'  %></span>
@@ -30,9 +38,11 @@
             <span><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-outline-warning'  %></span>
             <span><%#= link_to 'Issue', book_path(book) %></span>
             <% end %>
+           
         </div>
       </div>
       <br>
     </div>  
   <% end %>
 </div>
+

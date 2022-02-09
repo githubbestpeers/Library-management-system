@@ -46,8 +46,8 @@ class BookIssuesController < ApplicationController
     @book_issue = BookIssue.new(book_issue_params)
     
     if @book_issue.save
-
-    UserMailer.user_create(@book_issue).deliver_later
+    BookIssueSendJob.perform_later @book_issue
+    
      flash[:success] = "thanks for issued book"
        redirect_to books_path
     else
