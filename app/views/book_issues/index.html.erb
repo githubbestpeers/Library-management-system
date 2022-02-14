@@ -1,65 +1,48 @@
-
- 
-<table>
-  <tr>
-      <div class="container">
+<div class="container">
   <h1>All Issued books</h1>
   <% @book_issues.includes(:user).each do |book_issue| %>
   <div class="row">
-  <div class="col-sm-6">
-    <div class="card" style="width: 18rem;">
-     
-      
-      <div class="card-body">
-        
-        <p>
-          <% if book_issue.book.image.attached? %>
-            <%= image_tag book_issue.book.image.attachment, height: 50, weight: 50 %>
-          <% end %>
-        </p>
-        
-        <p>
-          <strong>User Id :</strong>
-          <%= book_issue.user_id %>
-        </p>  
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <p>
+            <% if book_issue.book.image.attached? %>
+              <%= image_tag book_issue.book.image.attachment, height: 50, weight: 50 %>
+            <% end %>
+          </p>
+          
+          <p>
+            <strong>User Id :</strong>
+            <%= book_issue.user_id %>
+          </p>  
 
-        <p>
-          <strong>Name:</strong>
-          <%= book_issue.book.name %>
-        </p>
+          <p>
+            <strong>Name:</strong>
+            <%= book_issue.book.name %>
+          </p>
 
-        <p>
-          <strong>Price:</strong>
-          <%= book_issue.book.price %>
-        </p>
+          <p>
+            <strong>Price:</strong>
+            <%= book_issue.book.price %>
+          </p>
 
-
-        <p>
-          <strong>Issue Date:</strong>
-          <%= book_issue.issue_date %>
-        </p>
-       
-        <p>
-          <strong>Submit Date:</strong>
-          <%= book_issue.submit_date %>
-        </p>
-
-        <#% if %>
-        <!-- <form action="/total_book" method="post">
-          <input type="hidden" name="total_book[book_id]" value="<%#= book_id %>">
-          <input type="submit" value="total_book">
-        </form> -->
-         <!--  <%#= if @book_issue %>
-           <span><%#= Book.book_issue.count == 1 % > <%= Book.count%> </span>
-         <#% end %>
- -->
-
-
+          <p>
+            <strong>Issue Date:</strong>
+            <%= book_issue.issue_date %>
+          </p>
+         
+          <p>
+            <strong>Submit Date:</strong>
+            <%= book_issue.submit_date %>
+          </p>
+        </div>
       </div>
+    </div>
   </div>
   <br>
   <% end %>
-</div>
-</div>
+  <div class="my-3">
+    <%= will_paginate @books, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
 </div>
 

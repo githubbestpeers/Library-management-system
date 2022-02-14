@@ -1,23 +1,20 @@
-<h1>Issued</h1>
-<%= boatstrap_form_with model: @book_issue, local: true do |form| %>
+<div class="container">
+  <h1>Issued Books</h1>
+  <%= boatstrap_form_with model: @book_issue, local: true do |form| %>
+    <p>
+      <strong>User Id:</strong>
+      <%= @book_issue.user_id %>
+    </p>
 
-
-
-<p>
-  <strong>User Id:</strong>
-  <%#byebug%>
-  <%= @book_issue.user_id %>
-</p>
- 
-
-  <p>
-    <%= form.label :issue_date %><br>
-    <%= form.date_field :issue_date %>
-  </p>
- 
-  <p>
-    <%= form.label :submit_date %><br>
-    <%= form.date_field :submit_date %>
-  </p>
-  
-<% end %>
+    <p>
+      <%= form.label :issue_date %><br>
+      <%= form.date_field :issue_date %>
+    </p>
+   
+    <p>
+      <%= form.label :submit_date %><br>
+      <%= form.date_field :submit_date %>
+    </p>
+    
+  <% end %>
+</div>

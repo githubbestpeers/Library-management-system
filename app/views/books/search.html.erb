@@ -1,17 +1,8 @@
-<body style="background: #f2f2f2">
-  
-<h1 style="color: #6699ff;"><b>Searching result</b></h1>
-
-
-<br>
-
+<body class="container" style="background: #f2f2f2"> 
+<h1 class="my-3" style="color: #6699ff;"><b>Searching result</b></h1>
  <div name="books">
-    <% @books.each do |book| %>
-      
+    <% @books.each do |book| %>  
       <%= link_to book.name, book_path(book.id) %><br>
-    
     <% end %>
  </div>
- 
-
 </body>

@@ -3,16 +3,17 @@
   <%#= form_for @book do |book| %>
    <%= bootstrap_form_with model: @book, local: true do |form| %>
     <div class="col-md-6">
-      <%#= form.label :name %></br>
+      
       <%= form.text_field  :name, required: true, class: "contact-form-text-area" %></br>
 
-      <%#= form.label :email %></br>
+     
       <%= form.text_field :email, required: true, class: "contact-form-text-area" %></br>
 
-      <!-- <%#= f.label :message %></br> -->
-      <%#= form.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area", 
-            placeholder: "Send me a message"%></br>
-      <%= form.submit 'Send Message', welcome_path, class: 'btn btn-primary' %>
+     
+      <%= form.text_area :query, rows: 8, cols: 40, required: true, class: "contact-form-text-area", 
+            placeholder: "Send me a query"%></br>
+      <%#= form.submit 'Send Message', class: 'btn btn-primary' %>
+      <%= link_to "Contact Us", "welcomes_path", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

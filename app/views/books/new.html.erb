@@ -1,62 +1,46 @@
 <html>
 <head>
-<h1>New book</h1>
+  <h1>New book</h1>
 </head>
 <body>
 <div class="container">
 
   <%= bootstrap_form_with scope: :books, url: books_path, local: true do |form| %>
-  
-     <%#= image_tag "book.jpg" %>
-
-     <% if @book.errors.any? %>
-      <!-- <h2>Error: Invalid field</h2> -->
-      <ul>
-        <% @book.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
  
-
-  <p>
-    <%= form.number_field :Total %>
-  </p>
-  <p>
-    <%= form.text_field :name %>
-  </p>
- 
-  <p>
-    <%= form.text_area :price %>
-  </p>
-
-   <p>
-    <%= form.text_area :author %>
-  </p>
-
-  <p>
-    <%= form.text_area :book_no %>
-  </p>
-
-
-  <p>
-    <%= form.text_area :description %>
-  </p>
-
-  <div>
-  <p>
-    <%= form.file_field :image %>
-  </p>
-  </div>
+    <p>
+      <%= form.number_field :Total %>
+    </p>
    
-  <p>
-    <%= form.submit %>
-  </p>
+    <p>
+      <%= form.text_field :name %>
+    </p>
+   
+    <p>
+      <%= form.text_area :price %>
+    </p>
+
+     <p>
+      <%= form.text_area :author %>
+    </p>
+
+    <p>
+      <%= form.text_area :book_no %>
+    </p>
+
+    <p>
+      <%= form.text_area :description %>
+    </p>
+
+    <div>
+    <p>
+      <%= form.file_field :image %>
+    </p>
+    </div>
+     
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
 </div>
-
 </body>
-
-<% end %>
-
 </html>

@@ -1,44 +1,40 @@
+<div class="container my-3">
+  <p>
+    <% if @book.image.attached? %>
+      <%= image_tag @book.image, height: 300, weight: 300 %>
+    <% end %>
+  </p>
 
+  <p>
+    <strong>Name:</strong>
+    <%= @book.name %>
+  </p>
+   
+  <p>
+    <strong>Price:</strong>
+    <%= @book.price %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%#byebug%>
-  <%= @book.name %>
-</p>
- 
-<p>
-  <strong>Price:</strong>
-  <%= @book.price %>
-</p>
+  <p>
+    <strong>Author:</strong>
+    <%= @book.author %>
+  </p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
+  <p>
+    <strong>Book No:</strong>
+    <%= @book.book_no %>
+  </p>
 
-<p>
-  <strong>Book No:</strong>
-  <%= @book.book_no %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @book.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @book.description %>
-</p>
+  <p>
+    <strong>Total:</strong>
+    <%= @book.Total %>
+  </p>
+   
+  <%= button_to 'Back', books_path, class: "btn btn-primary" %>
 
-<p>
-  <strong>Total:</strong>
-  <%= @book.Total %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <% if @book.image.attached? %>
-    <%= image_tag @book.image, height: 300, weight: 300 %>
-  <% end %>
-</p>
-
-
- 
-<%= button_to 'Back', books_path, class: "btn btn-primary" %>
-
+</div>

@@ -1,0 +1,25 @@
+<html>
+<head>
+  <h1>New book</h1>
+</head>
+<body>
+<div class="container">
+
+  <%= bootstrap_form_with scope: :books, url: books_path, local: true do |form| %>
+ 
+   
+    <p>
+      <%= form.text_field :name %>
+    </p>
+   
+    <p>
+      <%= form.text_area :email %>
+    </p>
+     
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</div>
+</body>
+</html>
