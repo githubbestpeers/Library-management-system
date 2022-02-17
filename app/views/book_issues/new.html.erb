@@ -5,17 +5,16 @@
       <%= form.label :issue_date %><br>
       <%= form.date_field :issue_date %>
     </p>
-   
-    <p>
-      <%= form.label :submit_date %><br>
-      <%= form.date_field :submit_date %>
-    </p>
+    
+   <!--  <p>
+      <%#= form.label :submit_date %><br>
+      <%#= form.date_field :submit_date %>
+    </p>  -->
     <%= form.hidden_field :book_id, value: params[:book_id] %>
     <%= form.hidden_field :user_id, value: params[:user_id] %>
-    <%# byebug %>
-    <%= form.select :day, (1..15).to_a, value: params[:book_issue]%>
-    
-    <p>
+  <p>
+    <%= form.select :total_day, (1..15) %>
+
       <%= form.submit %>
     </p>
   <% end %>

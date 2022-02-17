@@ -1,36 +1,37 @@
 class BookIssue < ApplicationRecord
   belongs_to :user
   belongs_to :book
-  
-  #validate :day, (1..15).to_a
-attr_accessor :day
-validate :validate_creates_at
 
-private
- 
-def convert_created_at
-  begin
-    self.created_at = BookIssue.new(self.day.to_i)
-  rescue book_issue
-  false
-  end  
-end
+  def submit_date
+    self.update(submit_date:created_at + total_day)
+    if submit_date > total_day
+      self.update("Thankyou for early submittion")
+    else
+      self.update(total_fine: 2*5)  
+    end  
+  end 
 
-def validate_created_at
-  errors.add("Created at date", "is invalid.") unless convert_created_at
-end
 
-  #validate :issue_date, :submit_date
- #  validate :submit_date_after_issue_date
+  def total_fine
+    if submit_date < total_day
+      self.update(total_fine: 2*5)
+    end  
+#  def check_submit_date
+#   self.update(submit_date: created_at + total_day)
+#  end
 
- #  private
+#  def calculate_fine
+#  if 
+#    self.update(total_fine: 2*5)
+#  end
+# end
+  end
 
- #  def submit_date_after_issue_date
- #    return if submit_date.blank? || issue_date.blank?
-
- #    if submit_date < issue_date
- #      errors.add(:submit_date, "must be after the start date")
- #    end
- # end
-
+# if submit_date
+#   date find
+#   time.now + 2
+#   if submitted date is less and time .now is greater provide a maessage thankyou for submittion 
+#   if submit_date is greater then total days than provide a fine message to pay expire 2*5 total fine 
+#   issue book model. 
+#Total_fine
 end

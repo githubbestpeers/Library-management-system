@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   get "books/contact_us"
   get "welcome/contact_us"
   get "welcome/new"
-  get "welcome/index"
+  #get "welcome/index"
   get 'contact_us', to: "welcome#contact_us", as:  :contact_us
   get '/search' => 'books#search', :as => 'search_page'
   devise_for :users
   resources :books
   resources :book_issues
-  resources :welcomes
+  resources :welcomes, only: [:index]
 end

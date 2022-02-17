@@ -1,4 +1,12 @@
 class WelcomeController < ApplicationController
+  def index 
+    @welcomes = Welcome.all
+  end
+
+  def new
+    @welcome = Welcome.new
+  end
+
   def contact_us
      @welcome = Welcome.new(params[:id])
    
@@ -13,15 +21,9 @@ class WelcomeController < ApplicationController
     #   #render :new
     # end
   end  
-
-
-
-def new
-  @welcome = Welcome.new
-end
  
 def create
-  @welcome = Welcome.new(article_params)
+  @welcome = Welcome.new(params[:contact])
  
   if @welcome.save
     redirect_to @welcome
@@ -29,20 +31,8 @@ def create
     render 'new'
   end
 end
-   
-
-  # def new
-  #   @welcome = Welcome.new
-  # end
-
-  # def create
-  #   @welcome = Welcome.new(params[:contact])
-  #   #@welcome.request = request
-   
-  # end
-
-  #  def welcome_params
-  #   params.require(:welcome).permit(:name, :email, :query)
-  # end
+   def welcome_params
+    params.require(:welcome).permit(:name, :email, :query)
+  end
 
 end

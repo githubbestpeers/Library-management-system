@@ -32,9 +32,16 @@
           </p>
          
           <p>
-            <strong>Submit Date:</strong>
-            <%= book_issue.submit_date %>
+            <strong>Total Day</strong>
+            <%= book_issue.total_day %>
           </p>
+          <p>
+              <%= button_to :total_fine %>
+          </p>
+          <!-- <p>
+            <strong>Submit Date:</strong>
+            <%#= book_issue.submit_date %>
+          </p> -->
         </div>
       </div>
     </div>
@@ -42,7 +49,7 @@
   <br>
   <% end %>
   <div class="my-3">
-    <%= will_paginate @books, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    <%#= will_paginate @books, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
   </div>
 </div>
 

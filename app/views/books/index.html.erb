@@ -1,4 +1,5 @@
 <div class="container">
+
   <h1>All Books</h1>
   <% if current_user.role == 'admin' %>
     <%= link_to 'New Book', new_book_path, class: "btn btn-outline-primary my-3" %>
@@ -9,9 +10,14 @@
 		<% @books.each do |book| %>
 			<div class="col-md-3">
     		<div class="card" style="width: 18rem;">
-	        <%= image_tag book.image, height: 300, width: 285 if book.image.attached? %>
+	   			<%= image_tag book.image, height: 300, width: 285 if book.image.attached? %>
 	        <div class="card-body">
-	          <h5 class="card-title"><%= link_to book.name, book_issues_path %></h5>
+	        	<%# @book_issues.each do |book| %>
+	        	<p><%#= link_to book.name, book.book_issues_path.where(user.id: current_user.id) %></p>
+	        	<%# end %>
+	        	<!-- <p class="card-text"><p><%#= link_to book.name, book_issues_path.sort.map{|book|{user_id: current_user.id}}#(user_id: current_user.id) %></p></p>
+	           --> <h5 class="card-title"><%= link_to book.name, book_path(book) %>
+	          </h5>
 	          <p class="card-text"><p><%= book.description.truncate(80) %></p>
 	          <p><b><%= book.price %>$</b></p>
 	          <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
@@ -30,5 +36,5 @@
   </div>
   <div class="my-3">
 		<%= will_paginate @books, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-	</div>
+	</div> 
 </div>

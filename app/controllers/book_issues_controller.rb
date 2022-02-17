@@ -19,9 +19,9 @@ class BookIssuesController < ApplicationController
     @book_issue = BookIssue.new
   end
 
-  # def edit
-  #   @book_issue = BookIssue.find
-  # end
+  def edit
+    @book_issue = BookIssue.find
+  end
 
   def create
     @book_issue = BookIssue.new(book_issue_params)
@@ -38,6 +38,6 @@ class BookIssuesController < ApplicationController
   private
 
   def book_issue_params
-    params.require(:book_issue).permit(:issue_date, :submit_date, :book_id, :user_id, :day) 
+    params.require(:book_issue).permit(:issue_date, :submit_date, :book_id, :user_id, :total_day, :total_fine) 
   end 
 end    
