@@ -68,3 +68,8 @@ gem "image_processing", ">= 1.2"
 gem 'bootstrap_form'
 gem "will_paginate",">= 3.0"
 gem 'simple_form', '~> 4.0'
+gem 'stripe'
+#gem 'tire'
+#gem 'faraday'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'

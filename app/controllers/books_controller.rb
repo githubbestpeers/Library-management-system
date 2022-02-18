@@ -4,11 +4,15 @@ class BooksController < ApplicationController
   def index
     #@available_book = Book.count-BookIssue.count
     @books = Book.paginate(:page => params[:page], :per_page => 12)
-    # tsearch = params[:search]#.present ? params[:search] : nil
-    # if params[:search] 
-    #   Book.where["name LIKE ?",  "%#{tsearch}%"]
-    # end  
-     @book_issues = BookIssue.all.where(user_id:current_user.id)
+    
+    # @book_issues = BookIssue.all.where(user_id:current_user.id)
+    #  @books.each do|book|
+    #   #byebug
+    #   @book_issue = BookIssue.find_by(book_id: book.id)
+    #   #@users = @book_issue.users
+    #  @user_id = @book_issue.user_id
+    #   @user = User.find_by(@user_id)
+    # end
   end  
   def search
     if params[:search].blank?
@@ -19,20 +23,14 @@ class BooksController < ApplicationController
     end
   end
 
-
-
-  # def self.search(query)
-  #    __elasticsearch__.search(
-  #    {
-  #      query: {
-  #         multi_match: {
-  #           query: query,
-  #           fields: ['name']
-  #         }
-  #       }
-  #       # more blocks will go IN HERE. Keep reading!
-  #    }  
-  # end
+  def user_list
+    @books.each do|book|
+    byebug
+    @book_issue = BookIssue.find_by(book_id: book.id)
+    @user_id = @book_issue.user_id
+    @user = User.find(@user_id)
+    end
+  end  
 
   def show
   end

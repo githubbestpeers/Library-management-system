@@ -1,6 +1,6 @@
 # require 'elasticsearch/model'
 
-# #Elasticsearch::Model.client = Elasticsearch::Client.new log:true, transpost_options:{request:{timeout:5}}
+#Elasticsearch::Model.client = Elasticsearch::Client.new log:true, transpost_options:{request:{timeout:5}}
 # class Book < ActiveRecord::Base
 #   include Elasticsearch::Model
 #   include Elasticsearch::Model::Callbacks

@@ -2,6 +2,9 @@ class BookIssuesController < ApplicationController
 
   def index 
     #@available_book = Book.count-BookIssue.count
+    #@book_issue = BookIssue.all
+    
+
     if current_user.role == "admin"
       @book_issues = BookIssue.paginate(:page => params[:page], :per_page => 10)
     else
@@ -38,6 +41,6 @@ class BookIssuesController < ApplicationController
   private
 
   def book_issue_params
-    params.require(:book_issue).permit(:issue_date, :submit_date, :book_id, :user_id, :total_day, :total_fine) 
+    params.require(:book_issue).permit(:issue_date, :submit_date, :book_id, :user_id, :total_day, :total_fine)
   end 
 end    

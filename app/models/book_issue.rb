@@ -3,9 +3,9 @@ class BookIssue < ApplicationRecord
   belongs_to :book
 
   def submit_date
-    self.update(submit_date:created_at + total_day)
-    if submit_date > total_day
-      self.update("Thankyou for early submittion")
+    self.update(issue_date:created_at + total_day)
+    if issue_date < total_day
+      redirect_to(books_path, alert: "field is increased") and return 
     else
       self.update(total_fine: 2*5)  
     end  
@@ -25,7 +25,30 @@ class BookIssue < ApplicationRecord
 #    self.update(total_fine: 2*5)
 #  end
 # end
-  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # if submit_date
 #   date find
