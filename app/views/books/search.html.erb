@@ -1,7 +1,7 @@
 <body class="container" style="background: #f2f2f2"> 
 <h1 class="my-3" style="color: #6699ff;"><b>Searching result</b></h1>
  <div name="books">
-   <div class="row">
+   <div class="row-md-4">
     <% @books.each do |book| %>
     <div class="col-md-3">
          <div class="card" style="width: 18rem;">
@@ -19,7 +19,8 @@
                          data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></span>
                <span><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-outline-warning'  %></span>
              <% end %>
-           </div>
+          </div>
+         </div>
          </div>
     <% end %>
  </div>

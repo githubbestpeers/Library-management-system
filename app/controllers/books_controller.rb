@@ -7,7 +7,6 @@ class BooksController < ApplicationController
     
     # @book_issues = BookIssue.all.where(user_id:current_user.id)
     #  @books.each do|book|
-    #   #byebug
     #   @book_issue = BookIssue.find_by(book_id: book.id)
     #   #@users = @book_issue.users
     #  @user_id = @book_issue.user_id
@@ -24,13 +23,21 @@ class BooksController < ApplicationController
   end
 
   def user_list
+
     @books.each do|book|
-    byebug
+   # byebug
     @book_issue = BookIssue.find_by(book_id: book.id)
     @user_id = @book_issue.user_id
     @user = User.find(@user_id)
     end
   end  
+
+  # def Total_book
+  #   @book = Book.all
+  #   if BookIssue = 1
+  #      @book.Total-BookIssue
+  #   end 
+  # end  
 
   def show
   end

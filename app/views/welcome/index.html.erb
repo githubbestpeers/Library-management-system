@@ -1,18 +1,18 @@
-<div class="container">
-  <h1>Contact Form</h1>
-  <%#= form_for @book do |book| %>
-   <%= bootstrap_form_with model: @book, local: true do |form| %>
-    <div class="col-md-6">
-      <%#= form.label :name %></br>
-      <%= form.text_field  :name, required: true, class: "contact-form-text-area" %></br>
-
-      <%#= form.label :email %></br>
-      <%= form.text_field :email, required: true, class: "contact-form-text-area" %></br>
-
-      <!-- <%#= f.label :message %></br> -->
-      <%#= form.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area", 
-            placeholder: "Send me a message"%></br>
-      <%= form.submit 'Send Message', welcome_path, class: 'btn btn-primary' %>
-    </div>
+<h1>Queries</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Query</th>
+  </tr>
+ 
+  <% @welcomes.each do |welcome| %>
+    <tr>
+      <td><%= welcome.name %></td>
+      <td><%= welcome.email %></td>
+      <td><%= welcome.query %></td>
+      <td><%#= link_to 'Show', article_path(article) %></td>
+    </tr>
   <% end %>
-</div>
+</table>

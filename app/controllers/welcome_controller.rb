@@ -7,23 +7,15 @@ class WelcomeController < ApplicationController
     @welcome = Welcome.new
   end
 
-  def contact_us
-     @welcome = Welcome.new(params[:id])
-   
-
-      #@book_issue = BookIssue.new(book_issue_params)
-    # if @welcome.save
-    #   BookIssueSendJob.perform_later @book_issue
-    #   flash[:success] = "thanks for issued book"
-    #   redirect_to books_path
-    # else
-    #   flash.now[:error] = "You got an issue"
-    #   #render :new
-    # end
-  end  
+  
  
 def create
-  @welcome = Welcome.new(params[:contact])
+
+  #  @article = Article.new(params[:article])
+ 
+  # @article.save
+  # redirect_to @welcome
+  @welcome = Welcome.new(params[:id])
  
   if @welcome.save
     redirect_to @welcome
