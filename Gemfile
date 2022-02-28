@@ -73,3 +73,5 @@ gem 'stripe'
 #gem 'faraday'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem "elasticsearch-transport", ">= 2.0"
+gem 'pay', '~> 2.0'

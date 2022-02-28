@@ -2,41 +2,26 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@available_book = Book.count-BookIssue.count
     @books = Book.paginate(:page => params[:page], :per_page => 12)
-    
-    # @book_issues = BookIssue.all.where(user_id:current_user.id)
-    #  @books.each do|book|
-    #   @book_issue = BookIssue.find_by(book_id: book.id)
-    #   #@users = @book_issue.users
-    #  @user_id = @book_issue.user_id
-    #   @user = User.find_by(@user_id)
-    # end
+    @book_issues = BookIssue.where(book_id: params[:book_id])
   end  
+
   def search
+    
     if params[:search].blank?
       redirect_to(books_path, alert: "Empty field!") and return
     else
-       keyword = params[:search]
-       @books = Book.where("lower(name) LIKE ?", "%#{keyword}%")
-    end
-  end
-
-  def user_list
-
-    @books.each do|book|
-   # byebug
-    @book_issue = BookIssue.find_by(book_id: book.id)
-    @user_id = @book_issue.user_id
-    @user = User.find(@user_id)
-    end
-  end  
+     keyword = params[:search]
+     @books = Book.where("lower(name) LIKE ?", "%#{keyword}%")
+   end
+  end 
 
   # def Total_book
-  #   @book = Book.all
-  #   if BookIssue = 1
-  #      @book.Total-BookIssue
-  #   end 
+  # # @book = Book.all
+  # @books.each do |book|
+  #   @available_book = book.Total-BookIssue
+  #   break
+  # end
   # end  
 
   def show
@@ -59,9 +44,15 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book.destroy
-    redirect_to books_path
-  end
+    @book = Book.find(params[:id])
+    begin
+      @book.destroy!
+    rescue
+      Book.find(params[:id]).present? ? @book = false : @book = true
+  #delete successful action here if @deleted == true
+end
+redirect_to books_path
+end
 
   def update
     if @book.update_attributes(book_params)
@@ -82,6 +73,56 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:name, :price, :author, :book_no, :description, :image, :search, :Total)
+    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :search, :Total)
   end
-end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # def index
+  #     # @book_issues = BookIssue.all.where(user_id:current_user.id)
+  #     #  @books.each do|book|
+  #     #   @book_issue = BookIssue.find_by(book_id: book.id)
+  #     #   #@users = @book_issue.users
+  #     #  @user_id = @book_issue.user_id
+  #     #   @user = User.find_by(@user_id)
+  #     # end
+
+  # end

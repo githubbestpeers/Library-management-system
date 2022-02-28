@@ -6,24 +6,21 @@
   <% end %>
  
   <%= link_to 'Issued Books ', book_issues_path, class: 'btn btn-outline-primary'  %>
+
 	<div class="row">
 		<% @books.each do |book| %>
 			<div class="col-md-3">
     		<div class="card" style="width: 18rem;">
 	   			<%= image_tag book.image, height: 300, width: 285 if book.image.attached? %>
 	        <div class="card-body">
-	        	<%# @book_issues.each do |book| %>
-	        	<p><%#= link_to book.name, book.book_issues_path.where(user.id: current_user.id) %></p>
-	        	<%# end %>
-	        	<!-- <p class="card-text"><p><%#= link_to book.name, book_issues_path.sort.map{|book|{user_id: current_user.id}}#(user_id: current_user.id) %></p></p>
-	           --> <!-- <h5 class="card-title"><%#= link_to book.name, book_path(book) %>
-			          </h5> -->
-
-						<h5 class="card-title"><%= link_to book.name, book_issues_path( email: current_user.email) %></h5>	  
+						<h5 class="card-title"><%= link_to book.name, book_issues_path(book_id: book.id) %></h5>	  
 	          <p class="card-text"><p><%= book.description.truncate(80) %></p>
 	          <p><b><%= book.price %>$</b></p>
 	          <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
-	          <p class="card-text">Total book is: <%= book.Total %></p>
+						<p><%= link_to 'submit book'%></p>  
+	          <p class="card-text">Total book is: <%= book.Total %> 
+	          	
+	          </p>
 	          <span><%= link_to 'Show', book_path(book), class: 'btn btn-outline-primary'  %></span> 
 	          <% if current_user.role == 'admin' %>
 	            <span><%= link_to 'Destroy', book_path(book),

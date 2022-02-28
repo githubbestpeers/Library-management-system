@@ -1,7 +1,7 @@
 <div class="container my-3">
   <p>
     <% if @book.image.attached? %>
-      <%= image_tag @book.image, height: 300, weight: 300 %>
+    <%= image_tag @book.image, height: 300, weight: 300 %>
     <% end %>
   </p>
 
@@ -9,7 +9,7 @@
     <strong>Name:</strong>
     <%= @book.name %>
   </p>
-   
+  
   <p>
     <strong>Price:</strong>
     <%= @book.price %>
@@ -34,7 +34,7 @@
     <strong>Total:</strong>
     <%= @book.Total %>
   </p>
-   
+  
   <%= button_to 'Back', books_path, class: "btn btn-primary" %>
 
 </div>

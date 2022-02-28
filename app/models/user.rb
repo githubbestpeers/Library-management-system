@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :books
   has_many :book_issues
-  
+  ##validates :book_issue
   enum role: [:user, :admin]
 
   after_initialize :set_default_role, :if => :new_record?

@@ -1,18 +1,29 @@
-<h1>Queries</h1>
- 
-<table>
+<h1>Queries</h1<table>
   <tr>
     <th>Name</th>
     <th>Email</th>
     <th>Query</th>
   </tr>
- 
+
   <% @welcomes.each do |welcome| %>
-    <tr>
-      <td><%= welcome.name %></td>
-      <td><%= welcome.email %></td>
-      <td><%= welcome.query %></td>
-      <td><%#= link_to 'Show', article_path(article) %></td>
-    </tr>
+  <tr>>
+
+
+    <td><%= welcome.name %></td> 
+    <td><%= welcome.email %></td>
+    <td><%= welcome.query %></td>
+
+    <td><%#= link_to 'Show', article_path(article) %></td>
+  </tr>
   <% end %>
 </table>
+<div class="container">
+      <% @welcomes.each do |welcome| %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%=  welcome.name %></h5>   
+            <p class="card-text"><p><%= welcome.email %></p>
+          </div>
+        </div>  
+      <% end %>
+</div>

@@ -1,25 +1,24 @@
 class BookIssuesController < ApplicationController
 
   def index 
-    #@available_book = Book.count-BookIssue.count
-    #@book_issue = BookIssue.all
-    
-
-    if current_user.role == "admin"
-      @book_issues = BookIssue.paginate(:page => params[:page], :per_page => 10)
-    else
-      @book_issues = BookIssue.all.where(user_id:current_user.id)
-    end
+    # if current_user.role == "admin"
+    #   @book_issues = BookIssue.paginate(:page => params[:page], :per_page => 10)
+    # else
+    #   @book_issues = BookIssue.where(user_id:current_user.id)
+    # end
+    @book_issues = BookIssue.where(book_id: params[:book_id])
   end
-
+  
   def show
     @book_issue = BookIssue.find(params[:id])
   end  
   
   def new
     @book = Book.new
+    #self.update(Total)
     @book = Book.find(params[:book_id])
-    @book_issue = BookIssue.new
+    
+    @book_issue = BookIssue.new  
   end
 
   def edit

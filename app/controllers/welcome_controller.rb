@@ -3,27 +3,25 @@ class WelcomeController < ApplicationController
     @welcomes = Welcome.all
   end
 
+  def show
+    @welcome = Welcome.find(params[:id])
+  end  
+
   def new
     @welcome = Welcome.new
   end
 
-  
- 
-def create
+  def create
+    @welcome = Welcome.new(welcome_params)
 
-  #  @article = Article.new(params[:article])
- 
-  # @article.save
-  # redirect_to @welcome
-  @welcome = Welcome.new(params[:id])
- 
-  if @welcome.save
-    redirect_to @welcome
-  else
-    render 'new'
+    if @welcome.save
+      redirect_to @welcome
+    else
+      render 'new'
+    end
   end
-end
-   def welcome_params
+
+  def welcome_params
     params.require(:welcome).permit(:name, :email, :query)
   end
 

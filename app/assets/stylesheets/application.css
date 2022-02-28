@@ -17,6 +17,6 @@
     margin-right: 200px !important
 }
 
-.my-book-class { font-size: 150%; }
+.my-book-class { font-size: 100%; }
 
 =require rails_bootstrap_forms

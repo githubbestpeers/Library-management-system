@@ -1,5 +1,9 @@
 <div class = "container">
-	<%= users.each do |user|%>
-	<%= user.id %>
+	<%= @users.each do |user|%>
+	<%= user.email %>
 	<% end %>
+	
+	<%#= users.each do |user|%>
+	<%#= user.id %>
+	<%# end %>
 </div>
