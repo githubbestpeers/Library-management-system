@@ -70,8 +70,12 @@ gem "will_paginate",">= 3.0"
 gem 'simple_form', '~> 4.0'
 gem 'stripe'
 #gem 'tire'
-#gem 'faraday'
+gem 'faraday'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem "elasticsearch-transport", ">= 2.0"
 gem 'pay', '~> 2.0'
+gem 'jquery-rails', '~> 4.4'
+# gem 'webpacker', '~> 0.1'
+gem 'activesupport', '>= 5.2.6'
+gem 'webpacker'

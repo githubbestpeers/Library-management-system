@@ -8,9 +8,12 @@ class Book < ApplicationRecord
   validates :book_no, presence: true
   validates :image, presence: true 
   has_many :book_issues, dependent: :destroy
-
+  #belongs_to :submit_book
   #create_index 'books#index', :self
-  def book_total
-    self.update.to_s(Total-1)
-  end  
+
+
+
+  # def book_total
+  #   self.update.to_s(Total-1)
+  # end  
 end

@@ -1,6 +1,11 @@
 class BookIssue < ApplicationRecord
+ 
   belongs_to :user
   belongs_to :book
+  #belongs_to :submit_book
+ # before_validation :set_total
+  
+      #byebug
 
   # def submit_date
   #   self.update(issue_date:created_at + total_day)

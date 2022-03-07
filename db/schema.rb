@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_095321) do
+ActiveRecord::Schema.define(version: 2022_03_07_082027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2022_02_23_095321) do
     t.text "description"
     t.text "image"
     t.integer "Total"
+    t.integer "bookcollection"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -83,6 +84,12 @@ ActiveRecord::Schema.define(version: 2022_02_23_095321) do
     t.integer "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "submit_books", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "submit_date"
   end
 
   create_table "total_books", force: :cascade do |t|

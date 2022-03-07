@@ -3,33 +3,25 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.paginate(:page => params[:page], :per_page => 12)
-    @book_issues = BookIssue.where(book_id: params[:book_id])
+    #@book_issues = BookIssue.where(book_id: params[:book_id])
   end  
 
   def search
-    
     if params[:search].blank?
       redirect_to(books_path, alert: "Empty field!") and return
     else
      keyword = params[:search]
      @books = Book.where("lower(name) LIKE ?", "%#{keyword}%")
    end
-  end 
+ end 
 
-  # def Total_book
-  # # @book = Book.all
-  # @books.each do |book|
-  #   @available_book = book.Total-BookIssue
-  #   break
-  # end
-  # end  
 
-  def show
-  end
+ def show
+ end
 
-  def new
-    @book = Book.new
-  end
+ def new
+  @book = Book.new
+ end
 
   def edit
   end
@@ -49,10 +41,15 @@ class BooksController < ApplicationController
       @book.destroy!
     rescue
       Book.find(params[:id]).present? ? @book = false : @book = true
-  #delete successful action here if @deleted == true
-end
-redirect_to books_path
-end
+    #delete successful action here if @deleted == true
+  end
+  redirect_to books_path
+  end
+
+  def book_total
+    @book = Book.find(params[:id])
+    @book.update(total_day-1)
+  end 
 
   def update
     if @book.update_attributes(book_params)
@@ -73,7 +70,7 @@ end
   end
 
   def book_params
-    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :search, :Total)
+    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :search, :Total, :total, :bookcollection)
   end
   end
 

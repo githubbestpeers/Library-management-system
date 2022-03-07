@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :books
   has_many :book_issues
+  has_many :submit_books
   ##validates :book_issue
   enum role: [:user, :admin]
 

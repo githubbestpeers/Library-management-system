@@ -13,11 +13,13 @@
     		<div class="card" style="width: 18rem;">
 	   			<%= image_tag book.image, height: 300, width: 285 if book.image.attached? %>
 	        <div class="card-body">
-						<h5 class="card-title"><%= link_to book.name, book_issues_path(book_id: book.id) %></h5>	  
+						<h5 class="card-title">
+
+							<%= link_to book.name, book_issues_path(book_id: book.id) %></h5>	  
 	          <p class="card-text"><p><%= book.description.truncate(80) %></p>
 	          <p><b><%= book.price %>$</b></p>
 	          <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
-						<p><%= link_to 'submit book'%></p>  
+						<p><%= link_to 'submit book',book_issues_submit_book_path(book_id: book.id), class: "btn btn-outline-primary my-3"%></p>  
 	          <p class="card-text">Total book is: <%= book.Total %> 
 	          	
 	          </p>

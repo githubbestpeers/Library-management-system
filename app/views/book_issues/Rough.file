@@ -1,0 +1,18 @@
+Rough.file
+Book issue controller index part
+# if current_user.role == "admin"
+    #   @book_issues = BookIssue.paginate(:page => params[:page], :per_page => 10)
+    # else
+    #   @book_issues = BookIssue.where(user_id:current_user.id)
+    # end
+
+
+
+
+    # if current_user.role == "admin"
+    #  # @book_issue = BookIssue.all
+    #    @book_issues = BookIssue.paginate(:page => params[:page], :per_page => 10)
+    # else
+    #   @book_issues = current_user.book_issues
+    #   # @book_issues = BookIssue.where(user_id:current_user.id)
+    # end

@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Submit Book</h1>
+  <%= form_with model: @book_issue, local: true do |form| %>
+    <p>
+      <%= form.label :submit_date %><br>
+      <%= form.date_field :submit_date %>
+    </p>
+
+    
+    <%= form.hidden_field :book_id, value: params[:book_id] %>
+    <%= form.hidden_field :user_id, value: params[:user_id] %>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</div>

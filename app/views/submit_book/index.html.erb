@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>All Issued books</h1>
+  <% @submit_book.includes(:user).each do |submit_book| %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <p>
+            <% if submit_book.image.attached? %>
+              <%= image_tag submit_book.book.image.attachment, height: 50, weight: 50 %>
+            <% end %>
+          </p>
+          
+          <p>
+            <strong>User Id :</strong>
+            <%= book_issue.user_id %>
+          </p>  
+
+          <p>
+            <strong>Name:</strong>
+            <%= book_issue.book.name %>
+          </p>
+
+          <p>
+            <strong>Price:</strong>
+            <%= book_issue.book.price %>
+          </p>
+
+          <p>
+            <strong>Issue Date:</strong>
+            <%= book_issue.issue_date %>
+          </p>
+         
+          <p>
+            <strong>Total Day</strong>
+            <%= book_issue.total_day %>
+          </p>
+          <p>
+              <%= button_to :total_fine %>
+          </p>
+          <!-- <p>
+            <strong>Submit Date:</strong>
+            <%#= book_issue.submit_date %>
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <% end %>
+  <div class="my-3">
+    <%#= will_paginate @books, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+</div>
+
