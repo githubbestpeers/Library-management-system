@@ -1,0 +1,45 @@
+name: library-management-system
+on: push
+jobs: 
+  Example-Actions-Job:
+    name: Exploring github Actions
+    runs-on:  ubuntu-latest
+    steps: 
+      -run: echo "The job was triggered by a ${{github.event_library-management-system}}event."
+      
+      -run: echo "The job is now running on a ${{runner.os}} server hosted by GitHub"
+      
+      -run: echo "The name of your branch is ${{github.ref}} and your repository is ${{github.repository}}."
+      
+      -name: check out repository code
+       uses: actions/checkout@v2
+       
+      -run: echo "The ${{github.repository}} repository has been cloned to the runner."
+      
+      -run: echo "Your repository has been copied to the path ${{git.workspace}} on the runner."
+      
+      -run: echo "the workflow is now ready to test your code on the runner"
+      
+      -name: conditional step when event name is pull request 
+       if: ${{github.event_library-management-system == 'pull_request'}}
+       run: echo "this event is pull request"
+      
+      -name: list file in the repository 
+       run: |
+         ls ${{github.workspace}}
+        
+      -name: setup ruby on runner
+       uses: action/setup-ruby@v1
+       with:
+        ruby-version: '2.x'
+        
+      -name: Display ruby version
+       run: ruby --version
+      
+      -run: echo "the preinstalled tools are located here on the runner ${{runner.tool_cache }}."
+      
+      -name: list files in tools cache
+       run: |
+        ls ${{ runner.tool_cache }}
+        
+      -run: echo "this job's status is ${{job.status}}."
