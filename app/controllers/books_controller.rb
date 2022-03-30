@@ -3,7 +3,6 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.paginate(:page => params[:page], :per_page => 12)
-    #@book_issues = BookIssue.where(book_id: params[:book_id])
   end  
 
   def search
@@ -13,37 +12,47 @@ class BooksController < ApplicationController
      keyword = params[:search]
      @books = Book.where("lower(name) LIKE ?", "%#{keyword}%")
    end
- end 
+  end 
 
+  def show
+  #render js: "alert( #{params[:id]})"
+  end
 
- def show
- end
-
- def new
+  def new
   @book = Book.new
- end
+ # @category = Book.map{|c| [c.name, c.id] }
+  end
 
   def edit
   end
 
   def create
+    @book = paypal_url(params)
     @book =Book.new(book_params)
     if @book.save
-      redirect_to @book 
+      #format.js
+      redirect_to @book
     else
       render :new
     end
   end
 
-  def destroy
-    @book = Book.find(params[:id])
-    begin
-      @book.destroy!
-    rescue
-      Book.find(params[:id]).present? ? @book = false : @book = true
-    #delete successful action here if @deleted == true
+  def paypal_url
+   @book = paypal_url(return_url).book
   end
-  redirect_to books_path
+
+  def destroy
+    #@book = Book.find(params[:id])
+   @book.destroy
+   
+   respond_to do |format|
+      format.html { redirect_to books_url }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+   end
+    # @book = Book.find(params[:id])
+    #     @book.destroy!
+    # redirect_to books_path
   end
 
   def book_total
@@ -58,7 +67,7 @@ class BooksController < ApplicationController
       render 'edit'
     end
   end
-
+  
   def issue
     @book_issue = BookIssue.find(params[:id])
   end  
@@ -70,7 +79,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:books).permit(:name, :price, :author, :book_no, :description, :image, :search, :Total, :total, :bookcollection)
+    params.require(:book).permit(:name, :price, :author, :book_no, :description, :image, :search, :Total, :bookcollection, :quantity)
   end
   end
 

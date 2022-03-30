@@ -1,0 +1,2 @@
+class AddDataToBookIssue < ApplicationRecord
+end

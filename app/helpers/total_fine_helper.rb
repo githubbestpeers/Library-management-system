@@ -1,0 +1,2 @@
+module TotalFineHelper
+end

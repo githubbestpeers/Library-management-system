@@ -79,3 +79,15 @@ gem 'jquery-rails', '~> 4.4'
 # gem 'webpacker', '~> 0.1'
 gem 'activesupport', '>= 5.2.6'
 gem 'webpacker'
+gem "paypal-recurring"
+gem 'paypal-sdk-rest'
+gem 'activemerchant'
+gem 'ngram'
+gem 'paypal-checkout-sdk'
+#gem 'bcrypt-ruby', '~> 3.0.0', :require => "bcrypt"
+gem 'wepay'
+gem 'sidekiq'
+gem 'stripe'
+gem "money-rails"
+gem "haml"
+gem 'stripe-rails'

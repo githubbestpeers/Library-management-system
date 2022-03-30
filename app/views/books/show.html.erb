@@ -1,10 +1,32 @@
+
 <div class="container my-3">
-  <p>
+  <div>
     <% if @book.image.attached? %>
     <%= image_tag @book.image, height: 300, weight: 300 %>
     <% end %>
-  </p>
+  </div>
+<script>
+    $(".container").click(function(){
+       $("p").toggle();//{
+      //   height: '150px',
+      //   width: '150px'
+      // });
+    });
+</script>
+<style>
+            button {
+                background-color: cyan;
+                height: 50px;
+                width: 80px;
+                padding: 20px;
+            }
 
+            button {border-radius: 12px;}
+        </style>
+<button id="toggle">Contant</button>
+
+<!-- <button id="show">Show</button>     -->
+   <%#= button_to 'contant show', class: 'btn btn-outline-primary'  %>
   <p>
     <strong>Name:</strong>
     <%= @book.name %>
@@ -35,6 +57,6 @@
     <%= @book.Total %>
   </p>
   
-  <%= button_to 'Back', books_path, class: "btn btn-primary" %>
+  <%= link_to 'back', books_path,  class: "btn btn-primary" %>
 
 </div>

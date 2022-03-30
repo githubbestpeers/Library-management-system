@@ -1,5 +1,6 @@
-<div class="container">
+s<div class="container">
   <h1>Book Issue</h1>
+
   <%= form_with model: @book_issue, local: true do |form| %>
     <p>
       <%= form.label :issue_date %><br>
@@ -11,6 +12,8 @@
     <%= form.hidden_field :user_id, value: params[:user_id] %>
   <p>
     <%= form.select :total_day, ["1","2","3","4","5","6","7","8","9","10"] %>
+     
+      <%# book_issue = current_user.Total.find_by(book_id: book_id) :method.book_issue do%>
 
       <%= form.submit %>
     </p>

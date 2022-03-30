@@ -63,7 +63,7 @@ Rails.application.configure do
 
   # 
   host = 'localhost:3000'
-config.action_mailer.delivery_method = :letter_opener_web
+config.action_mailer.delivery_method = :letter_opener
 config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
 
 config.action_mailer.delivery_method = :smtp
@@ -78,5 +78,9 @@ config.action_mailer.smtp_settings = {
   open_timeout:         5,
   read_timeout:         5 }
 
+# CLIENT_ID = 32636
+# CLIENT_SECRET = "180c800c62"
+# USE_STAGE = true
+# WEPAY = WePay.new(CLIENT_ID, CLIENT_SECRET, USE_STAGE)
 
 end

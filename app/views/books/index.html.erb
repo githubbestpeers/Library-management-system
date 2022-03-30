@@ -21,7 +21,9 @@
 	          <p><%= link_to 'Issue Book', new_book_issue_path(book_id: book.id, user_id: current_user.id), class: "btn btn-outline-primary my-3" %></p>
 						<p><%= link_to 'submit book',book_issues_submit_book_path(book_id: book.id), class: "btn btn-outline-primary my-3"%></p>  
 	          <p class="card-text">Total book is: <%= book.Total %> 
-	          	
+	          	<% if @book_issues == @user %>
+	          	  <% @book = book.Total-1 %>
+	          	<%end%>  
 	          </p>
 	          <span><%= link_to 'Show', book_path(book), class: 'btn btn-outline-primary'  %></span> 
 	          <% if current_user.role == 'admin' %>
@@ -29,7 +31,21 @@
 	                      method: :delete,
 	                      data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></span>
 	            <span><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-outline-warning'  %></span>
+
+					    <div class="buy-now pv1 mt4 has-text-right">
+					    	<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=buttons,marks,messages="></script>
+
+					       <%#= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), book.paypal_url(root_path)%>
+					       <div id="paypal-button-container"></div>
+					       <div class="buynow">
+											      <paypal-button
+											        refer="paypal-container-<%= book.id.to_s %>"
+											      />
+											    </div>
+																      <%#= link_to 'checkout',  :class => 'btn btn-info btn-lg btn-block' %>
+					    </div>
 	          <% end %>
+
 	        </div>
       	</div>
       </div>

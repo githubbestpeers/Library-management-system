@@ -16,6 +16,11 @@
             <%= book_issue.user_id %>
           </p>  
 
+           <p>
+            <strong>Email Id :</strong>
+            <%= book_issue.user.email %>
+          </p>  
+
           <p>
             <strong>Name:</strong>
             <%= book_issue.book.name %>
@@ -35,8 +40,18 @@
             <strong>Total Day</strong>
             <%= book_issue.total_day %>
           </p>
+         
           <p>
-              <%= button_to :total_fine %>
+            <strong>Total Fine</strong>
+            <%= book_issue.total_fine %>
+          </p>
+          
+
+          <p>
+              <%#= link_to :total_fine %>
+              <%= link_to "Checkout", book_issue.book.paypal_url(root_url) %>
+              <%#= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"),  
+               book_issue.book.paypal_url(root_path)%>
           </p>
           <!-- <p>
             <strong>Submit Date:</strong>

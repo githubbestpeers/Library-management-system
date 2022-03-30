@@ -10,12 +10,12 @@ class UserMailer < ApplicationMailer
      )
   end
 
-  # def submit_book
-  #   mail(
-  #     to: @user.email,
-  #     subject: "Your book is submitted"
-  #     )
-  # end 
+  def submit_book
+    mail(
+      to: @user.email,
+      subject: "Your book is submitted"
+      )
+  end 
 
   # def gental_remider()  
   # end 

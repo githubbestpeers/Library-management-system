@@ -8,6 +8,10 @@
   <%= bootstrap_form_with scope: :books, url: books_path, local: true do |form| %>
  
     <p>
+      <%#= select_tag(:book, options_for_select(@category), :prompt => "select add Category")%>
+    </p>
+
+    <p>
       <%= form.number_field :Total %>
     </p>
    

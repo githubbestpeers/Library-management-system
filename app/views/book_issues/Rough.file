@@ -16,3 +16,82 @@ Book issue controller index part
     #   @book_issues = current_user.book_issues
     #   # @book_issues = BookIssue.where(user_id:current_user.id)
     # end
+
+
+
+     def index 
+    if current_user.role == "admin"
+     # @book_issue = BookIssue.all
+       @book_issues = BookIssue.paginate(:page => params[:page], :per_page => 10)
+    else
+      @book_issues = current_user.book_issues
+      # @book_issues = BookIssue.where(user_id:current_user.id)
+    end
+  end
+
+
+
+
+
+def available_no_books(book_available, book_issue)
+t = book.Total
+return 0 if book_issue < t
+t.count
+end 
+end
+
+def submit_date
+self.update(issue_date:created_at + total_day)
+if issue_date < total_day
+redirect_to(books_path, alert: "field is increased") and return 
+else
+self.update(total_fine: 2*5)  
+end  
+end 
+
+def total_fine
+if submit_date < total_day
+self.update(total_fine: 2*5)
+end   
+end
+
+
+
+ def paypal_url(return_url)
+      values = {
+        :business => 'sb-e3ua912102888@business.example.com',
+        :cmd => 'book',
+        :upload => 1,
+        :return => return_url,
+      }
+      "https://www.sandbox.paypal.com/in/signin" #+ values.to_query
+    end
+
+https://www.sandbox.paypal.com/in/signin
+
+
+
+
+
+
+  # def available_no_books(book_available, book_issue)
+  #   t = book.Total
+  #   return 0 if book_issue < t
+  #     t.count
+  #   end 
+  # end
+
+  # def submit_date
+  #   self.update(issue_date:created_at + total_day)
+  #   if issue_date < total_day
+  #     redirect_to(books_path, alert: "field is increased") and return 
+  #   else
+  #     self.update(total_fine: 2*5)  
+  #   end  
+  # end 
+
+  # def total_fine
+  #   if submit_date < total_day
+  #     self.update(total_fine: 2*5)
+  #   end   
+  # end

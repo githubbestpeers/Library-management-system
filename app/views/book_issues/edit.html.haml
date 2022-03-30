@@ -1,0 +1,59 @@
+%div
+  %h1 List of books
+  = form_tag({:controller => "book_issues", :action => "submit" }, {:id => 'book_issue-details'}) do
+    %input{id:'book_issue-type', :type=>"hidden", :value=>"stripe", :name=>'book_issues[payment_gateway]'}
+    .form_row
+      %h4 Charges/Payments
+      - @books_purchase.each do |book|
+        %div{'data-charges-and-payments-section': true}
+          = radio_button_tag 'book_issues[book_id]', book.id, @books_purchase.first == book
+          %span{id: "radioButtonName#{book.id}"} #{book.name}
+          %span{id: "radioButtonPrice#{book.id}", :'data-price' => "#{book.price}"} #{humanized_money_with_symbol book.price}
+        %br
+      %h4 Subscriptions
+      - @books_subscription.each do |book|
+        %div
+          = radio_button_tag 'book_issues[book_id]', book.id, false
+          %span{id: "radioButtonName#{book.id}"} #{book.name}
+          %span{id: "radioButtonPrice#{book.id}", :'data-price' => "#{book.price_cents}"} #{humanized_money_with_symbol book.price}
+        %br
+    %hr
+    %h1 Payment Method
+    .form_row
+      %div
+        = radio_button_tag 'payment-selection', 'stripe', true, onclick: "changeTab();"
+        %span Stripe
+      %br
+      %div
+        = radio_button_tag 'payment-selection', 'paypal', false, onclick: "changeTab();"
+        %span Paypal
+    %br
+    %br
+    %div{id:'tab-stripe', class:'paymentSelectionTab active'}
+      %div{id:'card-element'}
+      %div{id:'card-errors', role:"alert"}
+      %br
+      %br
+      = submit_tag "Buy it!", id: "submit-stripe"
+    %div{id:'tab-paypal', class:'paymentSelectionTab'}
+      %div{id: "submit-paypal"}
+    %br
+    %br
+    %hr
+:javascript
+  function changeTab() {
+    var newActiveTabID = $('input[name="payment-selection"]:checked').val();
+    $('.paymentSelectionTab').removeClass('active');
+    $('#tab-' + newActiveTabID).addClass('active');
+  }
+
+:css
+  #card-element {
+    width:500px;
+  }
+  .paymentSelectionTab {
+    display: none;
+  }
+  .paymentSelectionTab.active {
+    display: block !important;
+  }

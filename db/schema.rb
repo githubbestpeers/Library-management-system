@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_07_082027) do
+ActiveRecord::Schema.define(version: 2022_03_28_123751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2022_03_07_082027) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "add_data_to_book_issues", force: :cascade do |t|
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "customer_id"
+    t.integer "payment_gateway"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "add_role_to_users", force: :cascade do |t|
@@ -60,6 +70,11 @@ ActiveRecord::Schema.define(version: 2022_03_07_082027) do
     t.integer "status"
     t.integer "total_day"
     t.integer "total_fine"
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "customer_id"
+    t.integer "payment_gateway"
     t.index ["book_id"], name: "index_book_issues_on_book_id"
     t.index ["user_id"], name: "index_book_issues_on_user_id"
   end
@@ -75,6 +90,12 @@ ActiveRecord::Schema.define(version: 2022_03_07_082027) do
     t.text "image"
     t.integer "Total"
     t.integer "bookcollection"
+    t.integer "quantity"
+    t.integer "category_id"
+    t.string "stripe_plan_name"
+    t.string "paypal_plan_name"
+    t.string "stripe_p_name"
+    t.string "paypal_p_name"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -82,6 +103,49 @@ ActiveRecord::Schema.define(version: 2022_03_07_082027) do
     t.string "email"
     t.string "query"
     t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pay_charges", id: :serial, force: :cascade do |t|
+    t.string "owner_type"
+    t.integer "owner_id"
+    t.string "processor", null: false
+    t.string "processor_id", null: false
+    t.integer "amount", null: false
+    t.integer "amount_refunded"
+    t.string "card_type"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.jsonb "data"
+    t.string "currency"
+    t.integer "application_fee_amount"
+    t.integer "pay_subscription_id"
+  end
+
+  create_table "pay_subscriptions", id: :serial, force: :cascade do |t|
+    t.string "owner_type"
+    t.integer "owner_id"
+    t.string "name", null: false
+    t.string "processor", null: false
+    t.string "processor_id", null: false
+    t.string "processor_plan", null: false
+    t.integer "quantity", default: 1, null: false
+    t.datetime "trial_ends_at"
+    t.datetime "ends_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "status"
+    t.jsonb "data"
+    t.decimal "application_fee_percent", precision: 8, scale: 2
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "password_hash"
+    t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,6 +165,14 @@ ActiveRecord::Schema.define(version: 2022_03_07_082027) do
     t.index ["book_issue_id"], name: "index_total_books_on_book_issue_id"
   end
 
+  create_table "total_fines", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "paid"
+    t.string "token"
+    t.integer "price"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,6 +185,13 @@ ActiveRecord::Schema.define(version: 2022_03_07_082027) do
     t.integer "no"
     t.string "User_name"
     t.integer "role", default: 0
+    t.string "stripe_id"
+    t.string "stripe_subscription_id"
+    t.string "card_last"
+    t.integer "card_exp_month"
+    t.integer "card_type"
+    t.integer "card_exp_year"
+    t.boolean "subscription"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

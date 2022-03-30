@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  charge_id: MyString
+  error_message: MyString
+  customer_id: MyString
+  payment_gateway: 1
+
+two:
+  token: MyString
+  charge_id: MyString
+  error_message: MyString
+  customer_id: MyString
+  payment_gateway: 1

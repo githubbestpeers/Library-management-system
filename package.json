@@ -2,6 +2,7 @@
   "name": "library-management",
   "private": true,
   "dependencies": {
+    "@paypal/sdk-client": "^4.0.165",
     "@rails/webpacker": "5.4.3",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
